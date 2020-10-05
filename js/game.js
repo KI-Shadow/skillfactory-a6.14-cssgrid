@@ -2,6 +2,7 @@ const numDivs = 36;
 const maxHits = 10;
 
 let hits = 0;
+let pressing = 0; //Считаем общее количество нажатий
 let firstHitTime = 0;
 
 function round() {
@@ -11,8 +12,10 @@ function round() {
   $(divSelector).addClass("target");
   $(divSelector).text(hits+1);
 
-  // FIXME: тут надо определять при первом клике firstHitTime
-
+  if (pressing == 1) {
+    firstHitTime = getTimestamp();
+  }
+  
   if (hits === maxHits) {
     endGame();
   }
@@ -30,6 +33,8 @@ function endGame() {
 }
 
 function handleClick(event) {
+  pressing = pressing + 1;
+
   $(".game-field").text("");
   if ($(event.target).hasClass("target")) {
     hits = hits + 1;
@@ -39,7 +44,6 @@ function handleClick(event) {
 }
 
 function init() {
-  // TODO: заказчик просил отдельную кнопку, запускающую игру а не просто по загрузке
   $("#button-reload").addClass("d-none");
 
   $("#button-start").click(function() {

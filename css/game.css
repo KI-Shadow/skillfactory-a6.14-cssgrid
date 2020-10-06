@@ -16,6 +16,13 @@
   background-color: red;
 }
 
+.red-block {
+	background-color: red;
+  	color: white;
+  	font-size: 24pt;
+  	text-align: center;
+}
+
 .btn {
 	margin-top: 10px;
 }
